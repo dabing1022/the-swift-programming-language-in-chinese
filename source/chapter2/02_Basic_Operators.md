@@ -20,11 +20,11 @@
 
 运算符是检查、改变、合并值的特殊符号或短语。例如，加号`+`将两个数相加（如`let i = 1 + 2`）。复杂些的运算例如逻辑与运算符`&&`（如`if enteredDoorCode && passedRetinaScan`），或让 i 值加1的便捷自增运算符`++i`等。
 
-Swift 支持大部分标准 C 语言的运算符，且改进许多特性来减少常规编码错误。如：赋值符（`=`）不返回值，以防止把想要判断相等运算符（`==`）的地方写成赋值符导致的错误。算术运算符（`+`，`-`，`*`，`/`，`%`等）会检测并不允许值溢出，以此来避免保存变量时由于变量大于或小于其类型所能承载的范围时导致的异常结果。当然允许你使用 Swift 的溢出运算符来实现溢出。详情参见[溢出运算符](23_Advanced_Operators.html#overflow_operators)。
+Swift 支持大部分标准 C 语言的运算符，且改进许多特性来减少常规编码错误。如：赋值符（`=`）不返回值，以防止把想要判断相等运算符（`==`）的地方写成赋值符导致的错误。算术运算符（`+`，`-`，`*`，`/`，`%`等）会检测并不允许值溢出，以此来避免保存变量时由于变量大于或小于其类型所能承载的范围时导致的异常结果。当然允许你使用 Swift 的溢出运算符来实现溢出。详情参见[溢出运算符](24_Advanced_Operators.html#overflow_operators)。
 
-区别于 C 语言，在 Swift 中你可以对浮点数进行取余运算（`%`），Swift 还提供了 C 语言没有的表达两数之间的值的区间运算符，（`a..b`和`a...b`），这方便我们表达一个区间内的数值。
+区别于 C 语言，在 Swift 中你可以对浮点数进行取余运算（`%`），Swift 还提供了 C 语言没有的表达两数之间的值的区间运算符（`a..<b`和`a...b`），这方便我们表达一个区间内的数值。
 
-本章节只描述了 Swift 中的基本运算符，[高级运算符](23_Advanced_Operators.html)包含了高级运算符，及如何自定义运算符，及如何进行自定义类型的运算符重载。
+本章节只描述了 Swift 中的基本运算符，[高级运算符](24_Advanced_Operators.html)包含了高级运算符，及如何自定义运算符，及如何进行自定义类型的运算符重载。
 
 <a name="terminology"></a>
 ## 术语
@@ -78,22 +78,11 @@ Swift 中所有数值类型都支持了基本的四则算术运算：
 
 
 
-与 C 语言和 Objective-C 不同的是，Swift 默认情况下不允许在数值运算中出现溢出情况。但是你可以使用 Swift 的溢出运算符来实现溢出运算（如`a &+ b`）。详情参见[溢出运算符](23_Advanced_Operators.html#overflow_operators)。
+与 C 语言和 Objective-C 不同的是，Swift 默认情况下不允许在数值运算中出现溢出情况。但是你可以使用 Swift 的溢出运算符来实现溢出运算（如`a &+ b`）。详情参见[溢出运算符](24_Advanced_Operators.html#overflow_operators)。
 
 加法运算符也可用于`String`的拼接：
 
 	"hello, " + "world"  // 等于 "hello, world"
-
-
-两个`Character`值或一个`String`和一个`Character`值，相加会生成一个新的`String`值：
-
-	let dog: Character = "d"
-	let cow: Character = "c"
-	let dogCow = dog + cow
-	// 译者注: 原来的引号内是很可爱的小狗和小牛, 但win os下不支持表情字符, 所以改成了普通字符
-	// dogCow 现在是 "dc"
-
-详情参见[字符，字符串的拼接](03_Strings_and_Characters.html#concatenating_strings_and_characters)。
 
 ### 求余运算符
 
@@ -192,8 +181,8 @@ Swift 中所有数值类型都支持了基本的四则算术运算：
 
 一元正号（`+`）不做任何改变地返回操作数的值。
 
-let minusSix = -6
-let alsoMinusSix = +minusSix  // alsoMinusSix 等于 -6
+	let minusSix = -6
+	let alsoMinusSix = +minusSix  // alsoMinusSix 等于 -6
 
 虽然一元`+`什么都不会改变，但当你在使用一元负号来表达负数时，你可以使用一元正号来表达正数，如此你的代码会具有对称美。
 
@@ -245,7 +234,7 @@ Swift 也提供恒等`===`和不恒等`!==`这两个比较符来判断两个对�
 	
 	let name = "world"
 	if name == "world" {
-	    println("hello, world")
+		println("hello, world")
 	} else {
 	    println("I'm sorry \(name), but I don't recognize you")
 	}
@@ -261,10 +250,10 @@ Swift 也提供恒等`===`和不恒等`!==`这两个比较符来判断两个对�
 
 三目运算符是以下代码的缩写形式：
 
-	if question: {
-	  answer1
+	if question {
+		answer1
 	} else {
-	  answer2
+		answer2
 	}
 
 这里有个计算表格行高的例子。如果有表头，那行高应比内容高度要高出50像素; 如果没有表头，只需高出20像素。
@@ -323,9 +312,9 @@ Swift 也提供恒等`===`和不恒等`!==`这两个比较符来判断两个对�
 
 另一种情况，分配一个非空值(`non-nil`)给 `userDefinedColorName`，再次执行空合运算，运算结果为封包在`userDefaultColorName`中的值，而非默认值。
 
-	userDefinedColor = "green"
+	userDefinedColorName = "green"
 	colorNameToUse = userDefinedColorName ?? defaultColorName
-	//userDefinedColor非空，因此colorNameToUsede的值为绿色
+	//userDefinedColorName非空，因此colorNameToUsede的值为绿色
 
 <a name="range_operators"></a>
 ## 区间运算符

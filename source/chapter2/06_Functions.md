@@ -36,7 +36,7 @@ func sayHello(personName: String) -> String {
 
 所有的这些信息汇总起来成为函数的定义，并以 `func` 作为前缀。指定函数返回类型时，用返回箭头 `->`（一个连字符后跟一个右尖括号）后跟返回类型的名称的方式来表示。
 
-该定义描述了函数做什么，它期望接收什么和执行结束时它返回的结果是什么。这样的定义使的函数可以在别的地方以一种清晰的方式被调用：
+该定义描述了函数做什么，它期望接收什么和执行结束时它返回的结果是什么。这样的定义使得函数可以在别的地方以一种清晰的方式被调用：
 
 ```swift
 println(sayHello("Anna"))
@@ -116,7 +116,7 @@ sayGoodbye("Dave")
 ```swift
 func printAndCount(stringToPrint: String) -> Int {
     println(stringToPrint)
-    return countElements(stringToPrint)
+    return count(stringToPrint)
 }
 func printWithoutCounting(stringToPrint: String) {
     printAndCount(stringToPrint)
@@ -313,7 +313,7 @@ join("hello", "world", joiner: "-")
 
 ### 可变参数（Variadic Parameters）
 
-一个`可变参数（variadic parameter）`可以接受一个或多个值。函数调用时，你可以用可变参数来传入不确定数量的输入参数。通过在变量类型名后面加入`（...）`的方式来定义可变参数。
+一个`可变参数（variadic parameter）`可以接受零个或多个值。函数调用时，你可以用可变参数来传入不确定数量的输入参数。通过在变量类型名后面加入`（...）`的方式来定义可变参数。
 
 传入可变参数的值在函数体内当做这个类型的一个数组。例如，一个叫做 `numbers` 的 `Double...` 型可变参数，在函数体内可以当做一个叫 `numbers` 的 `Double[]` 型的数组常量。
 
@@ -347,8 +347,8 @@ arithmeticMean(3, 8, 19)
 通过在参数名前加关键字 `var` 来定义变量参数：
 
 ```swift
-func alignRight(var string: String, count: Int, pad: Character) -> String {
-    let amountToPad = count - countElements(string)
+func alignRight(var string: String, totalLength: Int, pad: Character) -> String {
+    let amountToPad = totalLength - count(string)
     if amountToPad < 1 {
         return string
     }
@@ -562,7 +562,7 @@ func chooseStepFunction(backwards: Bool) -> (Int) -> Int {
     return backwards ? stepBackward : stepForward
 }
 var currentValue = -4
-let moveNearerToZero = chooseStepFunction(currentValue < 0)
+let moveNearerToZero = chooseStepFunction(currentValue > 0)
 // moveNearerToZero now refers to the nested stepForward() function
 while currentValue != 0 {
     println("\(currentValue)... ")

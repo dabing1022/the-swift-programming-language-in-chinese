@@ -1,4 +1,4 @@
-> 翻译：[numbbbbb](https://github.com/numbbbbb), [lyuka](https://github.com/lyuka), [JaySurplus](https://github.com/JaySurplus)    
+> 翻译：[numbbbbb](https://github.com/numbbbbb), [lyuka](https://github.com/lyuka), [JaySurplus](https://github.com/JaySurplus)
 > 校对：[lslxdx](https://github.com/lslxdx)
 
 # 基础部分
@@ -22,7 +22,7 @@
 
 Swift 是一门进行 iOS 和 OS X 应用开发的新语言。然而，如果你有 C 或者 Objective-C 开发经验的话，你会发现 Swift 的很多内容都是你熟悉的。
 
-Swift 包含了 C 和 Objective-C 上所有基础数据类型，`Int`表示整型值；`Double`和`Float`表示浮点型值；`Bool`是布尔型值；`String`是文本型数据。Swift 还提供了两个基本的集合类型，`Array`和`Dictionary`，详见[集合类型](04_Collection_Types.html)。
+Swift 包含了 C 和 Objective-C 上所有基础数据类型，`Int`表示整型值；`Double`和`Float`表示浮点型值；`Bool`是布尔型值；`String`是文本型数据。Swift 还提供了三个基本的集合类型，`Array`，`Set`和`Dictionary`，详见[集合类型](04_Collection_Types.html)。
 
 就像 C 语言一样，Swift 使用变量来进行存储并通过变量名来关联值。在 Swift 中，广泛的使用着值不可变的变量，它们就是常量，而且比 C 语言的常量更强大。在 Swift 中，如果你要处理的值不需要改变，那使用常量可以让你的代码更加安全并且更清晰地表达你的意图。
 
@@ -197,9 +197,10 @@ Swift 提供了8，16，32和64位的有符号和无符号整数类型。这些�
 你可以访问不同整数类型的`min`和`max`属性来获取对应类型的最大值和最小值：
 
 ```swift
-let minValue = UInt8.min  // minValue 为 0，是 UInt8 类型的最小值
-let maxValue = UInt8.max  // maxValue 为 255，是 UInt8 类型的最大值
+let minValue = UInt8.min  // minValue 为 0，是 UInt8 类型
+let maxValue = UInt8.max  // maxValue 为 255，是 UInt8 类型
 ```
+`min`和`max`所传回值的类型，正是其所对的整数类型(如上例UInt8, 所传回的类型是UInt8)，可用在表达式中相同类型值旁。
 
 ### Int
 
@@ -535,7 +536,7 @@ let convertedNumber = possibleNumber.toInt()
 当你确定可选类型_确实_包含值之后，你可以在可选的名字后面加一个感叹号（`!`）来获取值。这个惊叹号表示“我知道这个可选有值，请使用它。”这被称为可选值的_强制解析（forced unwrapping）_：
 
 ```swift
-if convertedNumber {
+if convertedNumber != nil {
     println("\(possibleNumber) has an integer value of \(convertedNumber!)")
 } else {
     println("\(possibleNumber) could not be converted to an integer")
@@ -693,4 +694,3 @@ assert(age >= 0)
 
 > 注意：  
 断言可能导致你的应用终止运行，所以你应当仔细设计你的代码来让非法条件不会出现。然而，在你的应用发布之前，有时候非法条件可能出现，这时使用断言可以快速发现问题。
-

@@ -71,7 +71,7 @@ if let roomCount = john.residence?.numberOfRooms {
 
 这告诉 Swift 来链接可选`residence?`属性，如果`residence`存在则取回`numberOfRooms`的值。
 
-因为这种尝试获得`numberOfRooms`的操作有可能失败，可选链会返回`Int?`类型值，或者称作“可选`Int`”。当`residence`是空的时候（上例），选择`Int`将会为空，因此会出先无法访问`numberOfRooms`的情况。
+因为这种尝试获得`numberOfRooms`的操作有可能失败，可选链会返回`Int?`类型值，或者称作“可选`Int`”。当`residence`是空的时候（上例），选择`Int`将会为空，因此会出现无法访问`numberOfRooms`的情况。
 
 要注意的是，即使numberOfRooms是非可选`Int`（`Int?`）时这一点也成立。只要是通过可选链的请求就意味着最后`numberOfRooms`总是返回一个`Int?`而不是`Int`。
 
@@ -111,7 +111,7 @@ class Person {
 
 ```swift
 class Residence {
-    var rooms = Room[]()
+    var rooms = [Room]()
     var numberOfRooms: Int {
     return rooms.count
     }
@@ -200,7 +200,7 @@ func printNumberOfRooms(){
 如果你利用可选链调用此方法，这个方法的返回值类型将是`Void?`，而不是`Void`，因为当通过可选链调用方法时返回值总是可选类型（optional type）。即使这个方法本身没有定义返回值，你也可以使用`if`语句来检查是否能成功调用`printNumberOfRooms`方法：如果方法通过可选链调用成功，`printNumberOfRooms`的隐式返回值将会是`Void`，如果没有成功，将返回`nil`：
 
 ```swift
-if john.residence?.printNumberOfRooms() {
+if john.residence?.printNumberOfRooms?() {
     println("It was possible to print the number of rooms.")
 } else {
     println("It was not possible to print the number of rooms.")
